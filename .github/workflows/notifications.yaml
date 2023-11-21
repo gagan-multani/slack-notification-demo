@@ -1,19 +1,25 @@
-name: Slack Notification Test
+name: Slack Notification on Failure
 
 on:
   push:
     branches:
-      - main  # or any branch you want to use for testing
+      - main  # Adjust the branch as needed
 
 jobs:
-  send-slack-notification:
-    name: Send Slack Notification
+  example-job:
+    name: Example Job
     runs-on: ubuntu-latest
     steps:
+      - name: Example Step
+        run: |
+          echo "This is an example step."
+          exit 1 # This will cause the step to fail
+
       - name: Slack Notification
+        if: failure() # This step will run only if the previous step fails
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_COLOR: 'good' # or 'danger' for red, 'warning' for yellow
-          SLACK_MESSAGE: 'Hello, this is a test notification from GitHub Actions!'
-          SLACK_TITLE: 'Test Notification'
+          SLACK_COLOR: 'danger'
+          SLACK_MESSAGE: 'The GitHub Action has failed!'
+          SLACK_TITLE: 'Failure Notification'
