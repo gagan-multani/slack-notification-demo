@@ -21,14 +21,5 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_COLOR: 'danger'
-          SLACK_MESSAGE: |
-            *Repository*: ${{ github.repository }}
-            *Workflow Run*: ${{ github.workflow }}
-            *Branch*: ${{ github.ref }}
-            *Commit*: ${{ github.sha }}
-            *Actor*: ${{ github.actor }}
-            *Failed Job*: ${{ github.job }}
-            *Details*: 
-            <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Run>
           SLACK_TITLE: 'GitHub Action Failed'
 
