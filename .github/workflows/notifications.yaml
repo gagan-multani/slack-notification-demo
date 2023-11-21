@@ -1,0 +1,19 @@
+name: Slack Notification Test
+
+on:
+  push:
+    branches:
+      - main  # or any branch you want to use for testing
+
+jobs:
+  send-slack-notification:
+    name: Send Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_COLOR: 'good' # or 'danger' for red, 'warning' for yellow
+          SLACK_MESSAGE: 'Hello, this is a test notification from GitHub Actions!'
+          SLACK_TITLE: 'Test Notification'
